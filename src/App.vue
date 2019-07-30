@@ -1,28 +1,30 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <button @click="addTable">+</button>
+    <div v-for="id in tables">
+      <Table v-bind:id="id" />
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Table from './components/Table.vue'
 
 export default {
   name: 'app',
+  data: () => ({
+    tables: []
+  }),
+  methods: {
+    addTable: function() {
+      this.tables.push(+new Date())
+    }
+  },
   components: {
-    HelloWorld
+    Table
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
