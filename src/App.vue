@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <button @click="addTable">+</button>
-    <div v-for="id in tables">
-      <Table v-bind:id="id" />
+    <div v-for="id in tables" :key="id">
+      <Table v-bind:id="id"/>
     </div>
   </div>
 </template>
@@ -27,4 +27,7 @@ export default {
 </script>
 
 <style>
+#app {
+  font-family: Roboto, sans-serif;
+}
 </style>
