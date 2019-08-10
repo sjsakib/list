@@ -58,7 +58,8 @@ export default {
 }
 
 .buttons {
-  width: 100%;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .buttons button {

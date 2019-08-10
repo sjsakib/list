@@ -30,7 +30,7 @@ table tr td.action-column button {
   background-color: white;
   border: 1px solid #0000001a;
   border-radius: 30%;
-  /* box-shadow: 1px 1px 2px #bbb;*/
+  cursor: pointer;
   outline: 0;
 }
 
