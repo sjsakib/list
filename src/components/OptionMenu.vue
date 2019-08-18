@@ -1,8 +1,15 @@
 <template>
-  <div class="content" @click="showMenu = !showMenu">
+  <div ref="content" class="content" @click="showMenu = !showMenu">
     <slot />
     <div v-if="showMenu" class="menu">
-      <span class="menu-item" v-for="action in actions" @click="action[1]()">{{ action[0] }}</span>
+      <span
+        class="menu-item"
+        :key="action[0]"
+        v-for="action in actions"
+        @click="action[1]()"
+      >
+        {{ action[0] }}
+      </span>
     </div>
   </div>
 </template>
@@ -13,7 +20,8 @@ export default {
     return { showMenu: false };
   },
   methods: {
-    toggle: function() {
+    toggle: function(e) {
+      if (this.$refs.content.contains(e.target)) return;
       this.showMenu = !this.showMenu;
     }
   },
@@ -25,6 +33,10 @@ export default {
         window.removeEventListener('click', this.toggle, true);
       }
     }
+  },
+
+  beforeDestroy: function() {
+    window.removeEventListener('click', this.toggle, true);
   },
   props: ['actions']
 };
@@ -41,15 +53,15 @@ export default {
   width: 100%;
   position: absolute;
   border: 1px solid #0000001a;
-  border-radius: .3rem;
-  font-size: .8rem;
+  border-radius: 0.3rem;
+  font-size: 0.8rem;
   font-weight: normal;
 }
 
 .menu-item {
-  padding: .5rem;
+  padding: 0.5rem;
   display: block;
-  border-radius: .3rem;
+  border-radius: 0.3rem;
 }
 
 .menu-item:hover {
